@@ -1,10 +1,10 @@
 name: Automation Workflow
 on: workflow_dispatch
 jobs:
-  first-job:
+  build:
     runs-on: windows-latest
     steps:
-      - name: Print greeting
-        run: echo "Hello World!"
-      - name: Print goodbye
-        run: echo "Done - bye!"
+     - name: setup-msbuild
+       uses: microsoft/setup-msbuild@v1.3.1
+     - name: Build app for release
+       run: msbuild HeroKuAppAutomation\HeroKuAppAutomation.csproj -verbosity:diag -property:Configuration=Debug
