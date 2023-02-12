@@ -21,4 +21,4 @@ jobs:
       run: dotnet build ${{ env.TEST_PROJECT_NAME }}
       
     - name: Test with VSTest
-      run: dotnet test ${{ env.TEST_PROJECT_NAME }}
+      run: dotnet test --logger "junit;LogFilePath=test-results.xml" ${{ env.TEST_PROJECT_NAME }}
