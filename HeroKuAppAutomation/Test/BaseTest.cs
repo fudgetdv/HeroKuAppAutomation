@@ -19,7 +19,7 @@ namespace HeroKuAppAutomation.Test
             chromeOptions.AddArguments("headless");
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new ArgumentNullException("chromedriver location not known");
 
-            using (var driver = new ChromeDriver(path,chromeOptions))
+            using (var driver = new ChromeDriver(chromeOptions))
             {
                 int count = 9;
                 driver.Url = "https://the-internet.herokuapp.com/add_remove_elements/";
