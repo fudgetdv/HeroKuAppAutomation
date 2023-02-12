@@ -19,3 +19,6 @@ jobs:
 
     - name: Build the project
       run: dotnet build ${{ env.TEST_PROJECT_NAME }}
+      
+    - name: Test with VSTest
+      run: dotnet test ${{ env.TEST_PROJECT_NAME }}
