@@ -15,18 +15,18 @@ namespace HeroKuAppAutomation.Test
         [TestMethod]
         public void AddElementTest()
         {
-            int count = 9;
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new ArgumentNullException("chromedriver location not known");
-            IWebDriver _driver = new ChromeDriver(path)
+
+            using (var driver = new ChromeDriver(path,chromeOptions))
             {
-                Url = "https://the-internet.herokuapp.com/add_remove_elements/"
-            };
-            AppPage page = new AppPage(_driver);
-            page.AddNElements(count);
-            Assert.IsTrue(page.CountElements() == count, "The count of elments is off");
-
-            _driver.Dispose();
+                int count = 9;
+                driver.Url = "https://the-internet.herokuapp.com/add_remove_elements/";
+                AppPage page = new AppPage(driver);
+                page.AddNElements(count);
+                Assert.IsTrue(page.CountElements() == count, "The count of elments is off");
+            }
         }
-
     }
 }
